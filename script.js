@@ -294,7 +294,6 @@ async function sendMessage() {
 
 const isNewsQuery =
   lower.includes("news") ||
-  lower.includes("today") ||
   lower.includes("latest") ||
   lower.includes("current affairs") ||
   lower.includes("headlines");
