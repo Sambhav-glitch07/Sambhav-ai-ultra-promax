@@ -1,4 +1,6 @@
 /* =========================
+/* =========================
+/* =========================
 RESET
 ========================= */
 *{
@@ -185,6 +187,9 @@ left:50%;
 transform:translate(-50%,-50%);
 text-align:center;
 transition:0.4s ease;
+}
+.hero.hide{
+  display:none;
 }
 .logo{
 font-size:40px;
