@@ -2,6 +2,7 @@
 // 🔑 PASTE API KEY HERE
 // =========================
 const API_KEY = "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";
+const NEWS_API_KEY = "9BE3l84gyeltv1UZ9l-HTehUhb3Yb4UfCjzSnXIqARHc9G7S";
 // =========================
 // ELEMENTS
 // =========================
@@ -145,6 +146,29 @@ function addMessage(
 // =========================
 // AI REQUEST
 // =========================
+async function searchNews(query) {
+  try {
+
+    const response = await fetch(
+      `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(query)}&language=en&apiKey=${NEWS_API_KEY}`
+    );
+
+    const data = await response.json();
+
+    if (!data.news || data.news.length === 0) {
+      return null;
+    }
+
+    return data.news
+      .slice(0, 5)
+      .map(item => item.title)
+      .join("\n");
+
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
 async function askAI(message) {
   const response =
     await fetch(
@@ -169,64 +193,65 @@ Identity:
 - Created by Sambhav Gupta.
 - Named after Sambhav Gupta.
 If someone asks who made you:
-"I was created by Sambhav Gupta. 😊"
+"I was created by Sambhav Gupta.Who is A class 8 student.😊"
 If someone asks why your name is Sambhav:
 "I was named after my creator, Sambhav Gupta. ✨"
-Never say OpenAI, Google, Meta, or Groq created you.
+Never say OpenAI, Google, Meta, or Groq created."
 If someone asks who is the cm of Andhra Pradesh:
-“The current cm of Andhra Pradesh is N. Chandrababu Naidu.”  
+“The current cm of Andhra Pradesh is N. Chandrababu Naidu.”  
 If someone asks who is the cm of Arunachal Pradesh:
-“The current cm of Arunachal Pradesh is Pema Khandu.”  
+“The current cm of Arunachal Pradesh is Pema Khandu.”  
 If someone asks who is the cm of Assam:
-“The current cm of Assam is Himanta Biswa Sarma.”  
+“The current cm of Assam is Himanta Biswa Sarma.”  
 If someone asks who is the cm of Bihar:
-“The current cm of Bihar is Samrat Choudhary.”  
+“The current cm of Bihar is Samrat Choudhary.”  
+Never say the current cm of bihar is Nitish Kumar."
 If someone asks who is the cm of Chhattisgarh:
-“The current cm of Chhattisgarh is Vishnu Deo Sai.”  
+“The current cm of Chhattisgarh is Vishnu Deo Sai.”  
 If someone asks who is the cm of Goa:
-“The current cm of Goa is Pramod Sawant.”  
+“The current cm of Goa is Pramod Sawant.”  
 If someone asks who is the cm of Gujarat:
-“The current cm of Gujarat is Bhupendra Patel.”  
+“The current cm of Gujarat is Bhupendra Patel.”  
 If someone asks who is the cm of Haryana:
-“The current cm of Haryana is Nayab Singh Saini.”  
+“The current cm of Haryana is Nayab Singh Saini.”  
 If someone asks who is the cm of Himachal Pradesh:
-“The current cm of Himachal Pradesh is Sukhvinder Singh Sukhu.”  
+“The current cm of Himachal Pradesh is Sukhvinder Singh Sukhu.”  
 If someone asks who is the cm of Jharkhand:
-“The current cm of Jharkhand is Hemant Soren.”  
+“The current cm of Jharkhand is Hemant Soren.”  
 If someone asks who is the cm of Karnataka:
-“The current cm of Karnataka is D.K. Shivakumar.”  
+“The current cm of Karnataka is D.K. Shivakumar.”  
 If someone asks who is the cm of Kerala:
-“The current cm of Kerala is V.D. Satheesan.”  
+“The current cm of Kerala is V.D. Satheesan.”  
 If someone asks who is the cm of Madhya Pradesh:
-“The current cm of Madhya Pradesh is Mohan Yadav.”  
+“The current cm of Madhya Pradesh is Mohan Yadav.”  
 If someone asks who is the cm of Maharashtra:
-“The current cm of Maharashtra is Devendra Fadnavis.”  
+“The current cm of Maharashtra is Devendra Fadnavis.”  
 If someone asks who is the cm of Manipur:
-“The current cm of Manipur is Yumnam Khemchand Singh.”  
+“The current cm of Manipur is Yumnam Khemchand Singh.”  
 If someone asks who is the cm of Meghalaya:
-“The current cm of Meghalaya is Conrad Kongkal Sangma.”  
+“The current cm of Meghalaya is Conrad Kongkal Sangma.”  
 If someone asks who is the cm of Mizoram:
-“The current cm of Mizoram is Lalduhoma.”  
+“The current cm of Mizoram is Lalduhoma.”  
 If someone asks who is the cm of Nagaland:
-“The current cm of Nagaland is Neiphiu Rio.”  
+“The current cm of Nagaland is Neiphiu Rio.”  
 If someone asks who is the cm of Odisha:
-“The current cm of Odisha is Mohan Charan Majhi.”  
+“The current cm of Odisha is Mohan Charan Majhi.”  
 If someone asks who is the cm of Punjab:
-“The current cm of Punjab is Bhagwant Singh Mann.”  
+“The current cm of Punjab is Bhagwant Singh Mann.”  
 If someone asks who is the cm of Rajasthan:
-“The current cm of Rajasthan is Bhajanlal Sharma.”  
+“The current cm of Rajasthan is Bhajanlal Sharma.”  
 If someone asks who is the cm of Sikkim:
-“The current cm of Sikkim is Prem Singh Tamang.”  
+“The current cm of Sikkim is Prem Singh Tamang.”  
 If someone asks who is the cm of Tamil Nadu:
-“The current cm of Tamil Nadu is C. Joseph Vijay.”  
+“The current cm of Tamil Nadu is C. Joseph Vijay.”  
 If someone asks who is the cm of Telangana:
-“The current cm of Telangana is A. Revanth Reddy.”  
+“The current cm of Telangana is A. Revanth Reddy.”  
 If someone asks who is the cm of Tripura:
-“The current cm of Tripura is Dr. Manik Saha.”  
+“The current cm of Tripura is Dr. Manik Saha.”  
 If someone asks who is the cm of Uttar Pradesh:
-“The current cm of Uttar Pradesh is Yogi Adityanath.”  
+“The current cm of Uttar Pradesh is Yogi Adityanath.”  
 If someone asks who is the cm of Uttarakhand:
-“The current cm of Uttarakhand is Pushkar Singh Dhami.”  
+“The current cm of Uttarakhand is Pushkar Singh Dhami.”  
 If someone asks who is the cm of West Bengal:
 “The current cm of West Bengal is Suvendu Adhikari.However The Previous Cm was Mamata Banerjee."
 Be:
@@ -264,6 +289,15 @@ Be:
 async function sendMessage() {
   const message =
     userInput.value.trim();
+  const lower =
+  message.toLowerCase();
+
+const isNewsQuery =
+  lower.includes("news") ||
+  lower.includes("today") ||
+  lower.includes("latest") ||
+  lower.includes("current affairs") ||
+  lower.includes("headlines");
   if (!message) return;
   hero.classList.add(
     "hide"
@@ -287,6 +321,36 @@ async function sendMessage() {
     loading
   );
   try {
+    if (isNewsQuery) {
+
+  const response = await fetch(
+  `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(message)}&language=en&apiKey=${NEWS_API_KEY}`
+);
+
+  const data = await response.json();
+
+  if (data.news && data.news.length) {
+
+    const headlines =
+      data.news.map(
+        item => item.title
+      ).join("\n");
+
+    const reply =
+      await askAI(
+        `Summarize these latest news headlines:\n\n${headlines}`
+      );
+
+    loading.remove();
+
+    addMessage(
+      reply,
+      "ai-msg"
+    );
+
+    return;
+  }
+    }
     const reply =
       await askAI(message);
     loading.remove();
