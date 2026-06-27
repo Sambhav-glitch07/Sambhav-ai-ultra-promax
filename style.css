@@ -10,7 +10,7 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 body{
-background:#070A12;
+background:#000000;
 color:white;
 overflow:hidden;
 }
@@ -22,9 +22,9 @@ content:"";
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 20% 20%, #6c63ff33, transparent 40%),
-radial-gradient(circle at 80% 80%, #00e5ff33, transparent 40%),
-radial-gradient(circle at 50% 50%, #ff3cac22, transparent 50%);
+radial-gradient(circle at 20% 20%, #1f14defa, transparent 40%),
+radial-gradient(circle at 80% 80%, #00e5ff, transparent 40%),
+radial-gradient(circle at 50% 50%, #ff3cacff, transparent 50%);
 z-index:-2;
 }
 .bottom-glow{
@@ -145,7 +145,7 @@ backdrop-filter:blur(10px);
 z-index:2000;
 }
 .modal-box{
-background:rgba(255,255,255,0.08);
+background:rgba(12,10,10,0.937);
 padding:30px;
 border-radius:20px;
 width:320px;
