@@ -18,7 +18,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <!-- SIDEBAR -->
 
-<<div id="sidebar" class="sidebar">
+  <div id="sidebar" class="sidebar">
 
   <div class="sidebar-header">
 
@@ -53,9 +53,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
       type="text"
       placeholder="Your name">
 
-    <button onclick="saveName()">
-      Continue
-    </button>
+    <button id="continueBtn" onclick="saveName()">Continue</button>
 
   </div>
 
@@ -67,11 +65,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <div class="top-left">
 
-    <button
-      class="icon-btn"
-      id="menuBtn">
-      ☰
-    </button>
 
     <h2 class="app-title">
       🤖 Sambhav AI
@@ -119,6 +112,10 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 </div>
 
+<script src="memory.js"></script>
+<script src="wiki.js"></script>
+<script src="router.js"></script>
+<script src="search.js"></script>
 <script src="script.js"></script>
 
 </body>
