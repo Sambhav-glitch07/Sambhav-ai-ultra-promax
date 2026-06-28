@@ -292,3 +292,43 @@ width:95%;
 width:95%;
 }
 }
+.ai-image{
+  width:100%;
+  max-width:350px;
+  border-radius:15px;
+  margin:10px 0;
+}
+.image-viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.image-viewer img{
+  max-width:95%;
+  max-height:90%;
+  border-radius:12px;
+}
+
+#closeImage{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:35px;
+  color:white;
+  cursor:pointer;
+  z-index:10000;
+}
+#downloadImage{
+  position:absolute;
+  top:20px;
+  left:25px;
+  font-size:30px;
+  cursor:pointer;
+  color:white;
+  z-index:10000;
+}
