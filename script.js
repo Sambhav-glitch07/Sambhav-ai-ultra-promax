@@ -75,6 +75,22 @@ async function liveSearch(query) {
     return null;
   }
 }
+async function generateImage(prompt) {
+
+  const url =
+    "https://image.pollinations.ai/prompt/" +
+    encodeURIComponent(prompt);
+
+  addMessage("🎨 Generating image...", "ai-msg");
+
+  const img = document.createElement("img");
+  img.src = url;
+  img.className = "ai-image";
+  img.alt = prompt;
+
+  chat.appendChild(img);
+  chat.scrollTop = chat.scrollHeight;
+}
 
 // =========================
 // AI ENGINE
@@ -181,14 +197,52 @@ async function sendMessage() {
   return false;
   }
   if (!message) return;
-const lower = message.toLowerCase();
 
+const lower = message.toLowerCase();
+// =========================
+// SAVE USER NAME
+// =========================
+if (lower.startsWith("my name is ")) {
+
+  const name = message.substring(11).trim();
+
+  saveMemory("name", name);
+
+  addMessage(message, "user-msg");
+  addMessage("😊 Nice to meet you, " + name + "! I'll remember your name.", "ai-msg");
+
+  userInput.value = "";
+
+  return;
+}
+if (
+  lower.startsWith("draw ") ||
+  lower.startsWith("create image") ||
+  lower.startsWith("generate image") ||
+  lower.startsWith("make image") ||
+  lower.startsWith("can you create image of") ||
+  lower.startsWith("design") ||
+  lower.startsWith("create poster of")
+) {
+
+  const prompt = message
+    .replace(/draw|create image|generate image|make image/gi, "")
+    .trim();
+
+  addMessage(message, "user-msg");
+
+  await generateImage(prompt);
+
+  userInput.value = "";
+
+  return;
+}
 if (
   lower.includes("what is my name") ||
   lower.includes("what's my name") ||
   lower.includes("my name")
 ) {
-  const name = Memory.get("name");
+  const name = memory.name;
 
   addMessage(message, "user-msg");
 
@@ -208,6 +262,31 @@ if (
   loading.innerText = "Thinking...";
   chat.appendChild(loading);
 
+  async function generateImage(prompt){
+
+  const url =
+  "https://image.pollinations.ai/prompt/" +
+  encodeURIComponent(prompt);
+
+  const img=document.createElement("img");
+
+  img.src=url;
+  img.className="ai-image";
+
+  img.onclick=()=>{
+
+    document.getElementById("viewerImg").src=url;
+
+    document.getElementById("imageViewer").style.display="flex";
+
+  };
+
+  chat.appendChild(img);
+
+  chat.scrollTop=chat.scrollHeight;
+
+}
+  
   try {
     const reply = await askAI(message);
 
@@ -234,6 +313,38 @@ function safeRemove(el) {
 // =========================
 // EVENTS
 // =========================
+document.getElementById("closeImage").onclick=()=>{
+
+document.getElementById("imageViewer").style.display="none";
+
+};
+
+document.getElementById("imageViewer").onclick=(e)=>{
+
+if(e.target.id==="imageViewer"){
+
+document.getElementById("imageViewer").style.display="none";
+
+}
+
+};
+document.getElementById("downloadImage").onclick = () => {
+
+  const img = document.getElementById("viewerImg");
+
+  const a = document.createElement("a");
+
+  a.href = img.src;
+
+  a.download = "SambhavAI_Image.png";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  document.body.removeChild(a);
+
+};
 sendBtn.addEventListener("click", sendMessage);
 
 userInput.addEventListener("keypress", (e) => {
@@ -248,7 +359,8 @@ window.saveName = function () {
   if (!name) return;
 
   localStorage.setItem("sambhav_username", name);
-
+  
+  saveMemory("name", name);
   heroText.innerText = `What's next, ${name}?`;
   modal.style.display = "none";
 };
