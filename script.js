@@ -220,6 +220,8 @@ if (
   lower.startsWith("create image") ||
   lower.startsWith("generate image") ||
   lower.startsWith("make image") ||
+  lower.startsWith("create an image") ||
+  lower.startsWith("create an image of") ||
   lower.startsWith("can you create image of") ||
   lower.startsWith("design") ||
   lower.startsWith("create poster of")
