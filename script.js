@@ -364,3 +364,10 @@ window.saveName = function () {
   
   saveMemory("name", name);
   heroText.innerText = `What's next, ${name}?`;
+  if (modal) {
+
+    modal.style.display = "none";
+
+  }
+
+};
