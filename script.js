@@ -2,7 +2,7 @@
 // 🔑 API KEYS
 // =========================
 const API_KEY = "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";
-const NEWS_API_KEY = "9BE3l84gyeltv1UZ9l-HTehUhb3Yb4UfCjzSnXIqARHc9G7S";
+const NEWS_API_KEY = "3HVCLcjnNkNFiuOouM3XdAWWbJd0BweGZrKFEueOYSlKuvca";
 
 // =========================
 // MEMORY
