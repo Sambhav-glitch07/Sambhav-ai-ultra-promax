@@ -1,4 +1,4 @@
-=========================
+//=========================
 // 🔑 API KEYS
 // =========================
 const API_KEY = "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";
